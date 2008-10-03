@@ -22,6 +22,18 @@ module NamedScope
     
     protected
     
+    def rails_version
+      ENV['RAILS_VERSION']
+    end
+    
+    def rails_126?
+      rails_version == '1.2.6'
+    end
+    
+    def rails_204?
+      rails_version == '2.0.4'
+    end
+    
     def assert_sql(*patterns_to_match)
       $queries_executed = []
       yield
