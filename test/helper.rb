@@ -7,13 +7,10 @@ require 'factory_girl'
 require 'lib/test_case'
 require 'named_scope'
 
-class GroupedScope::TestCase
+class NamedScope::TestCase
   
   def setup_environment
     setup_database
-    Department.create! :name => 'IT'
-    Department.create! :name => 'Human Resources'
-    Department.create! :name => 'Finance'
   end
   
   protected
@@ -30,14 +27,6 @@ class GroupedScope::TestCase
           t.column :body,         :string
           t.column :employee_id,  :integer
         end
-        connection.create_table :departments, :force => true do |t|
-          t.column :name,         :string
-        end
-        connection.create_table :department_memberships, :force => true do |t|
-          t.column :employee_id,    :integer
-          t.column :department_id,  :integer
-          t.column :meta_info,      :string
-        end
       end
     end
   end
@@ -45,11 +34,11 @@ class GroupedScope::TestCase
 end
 
 class Employee < ActiveRecord::Base
-  has_many :reports do ; def urgent ; find(:all,:conditions => {:title => 'URGENT'}) ; end ; end
-  has_many :taxonomies, :as => :classable
-  has_many :department_memberships
-  has_many :departments, :through => :department_memberships
-  grouped_scope :reports, :departments
+  has_many :reports do
+    def urgent
+      find :all, :conditions => {:title => 'URGENT'}
+    end
+  end
 end
 
 class Report < ActiveRecord::Base
@@ -60,15 +49,5 @@ class Report < ActiveRecord::Base
   def urgent_body? ; self[:body] =~ /URGENT/ ; end
 end
 
-class Department < ActiveRecord::Base
-  named_scope :it, :conditions => {:name => 'IT'}
-  named_scope :hr, :conditions => {:name => 'Human Resources'}
-  named_scope :finance, :conditions => {:name => 'Finance'}
-  has_many :department_memberships
-  has_many :employees, :through => :department_memberships
-end
 
-class DepartmentMembership < ActiveRecord::Base
-  belongs_to :employee
-  belongs_to :department
-end
+

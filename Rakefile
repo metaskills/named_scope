@@ -10,7 +10,7 @@ end
 
 
 desc 'Default: run unit tests.'
-task :default => :test
+task :default => :test_rails
 
 desc 'Test the NamedScope plugin.'
 Rake::TestTask.new(:test) do |t|
