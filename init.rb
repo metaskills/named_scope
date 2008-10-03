@@ -1,0 +1,2 @@
+require 'named_scope'
+
