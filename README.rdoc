@@ -1,9 +1,19 @@
 
-== NamedScope: 
+== NamedScope: For those left behind.
 
-NamedScope
+This is not simple hack of named scope like you might find in WillPaginate. This is a fully 
+backported and tested version of NamedScope that will work on rails 1.2.6 or 2.0.4. The most 
+important part of this plugin is that it is TESTED. In fact all the test are Shoulda/FactoryGirl 
+ports of the tests currently found in rails 2.1.1.
 
-This plugin has been tested with rails 1.2.6 and 2.0.4
+
+=== Extra Benefits
+
+This plugin includes backported code for the ActiveRecord class methods that work in conjunction 
+with NamedScope such as first, last and all.
+
+This plugin also includes ActiveRecord.attribute_condition which allows you to use named scopes 
+as conditions in other finder methods.
 
 
 === Installation & Usage
