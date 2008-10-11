@@ -1,4 +1,10 @@
 
+*0.2* (October 10th, 2008)
+
+* Add #first to AssociationCollection with some tests to confirm. 
+  Also use red green for tests, makes rake pretty.
+
+
 *0.1* (October 3rd, 2008)
 
 * Initial public release.  [Ken Collins]
