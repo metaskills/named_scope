@@ -17,6 +17,18 @@ class NamedScopeTest < NamedScope::TestCase
     should 'allow :all scope for classes' do
       assert_same_elements Topic.find(:all), Topic.all
     end
+    
+    should 'not load all associations when using first' do
+      assert_sql(/SELECT \* FROM posts.*LIMIT 1/) do
+        @david.reload.posts.first
+      end
+    end
+    
+    should 'not load all associations when using last' do
+      assert_sql(/SELECT \* FROM posts.*DESC LIMIT 1/) do
+        @david.reload.posts.last
+      end
+    end
 
   end
   

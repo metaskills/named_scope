@@ -64,6 +64,15 @@ end
 
 ActiveRecord::Associations::AssociationCollection.class_eval do
   
+  def first(*args)
+    if fetch_first_or_last_using_find? args
+      find(:first, *args)
+    else
+      load_target unless loaded?
+      @target.first(*args)
+    end
+  end
+  
   def last(*args)
     if fetch_first_or_last_using_find? args
       find(:last, *args)
