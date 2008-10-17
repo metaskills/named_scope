@@ -29,6 +29,13 @@ class NamedScopeTest < NamedScope::TestCase
         @david.reload.posts.last
       end
     end
+    
+    should 'return 0 when calculating on an empty set returned from a scope' do
+      new_author = Factory :author
+      assert_equal 0, @david.posts.containing_the_letter_a.sum('comments_count')      # non-empty
+      assert_equal 0, new_author.posts.containing_the_letter_a.count                  # empty
+      assert_equal 0, new_author.posts.containing_the_letter_a.sum('comments_count')
+    end
 
   end
   

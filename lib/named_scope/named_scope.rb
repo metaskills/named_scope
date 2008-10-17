@@ -136,6 +136,10 @@ module ActiveRecord
         end
       end
 
+      def sum(*args)
+        super || 0
+      end
+
       def empty?
         @found ? @found.empty? : count.zero?
       end
