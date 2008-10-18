@@ -1,8 +1,13 @@
 
+*0.3* (Octover 18th, 2008)
+
+* Made ActiveRecord::Caculations.sum default to 0 when nil from a named scope. [Brennan Dunn]
+
+
 *0.2* (October 10th, 2008)
 
 * Add #first to AssociationCollection with some tests to confirm. 
-  Also use red green for tests, makes rake pretty.
+  Also use red green for tests, makes rake pretty. [Ken Collins]
 
 
 *0.1* (October 3rd, 2008)
