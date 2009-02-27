@@ -32,7 +32,7 @@ Factory.define :david_with_posts, :class => 'Author' do |a|
   a.posts     { |post| [post.association(:post), post.association(:post)] }
 end
 
-Factory.define(:author_address, :class => 'AuthorAddresss') do |aa|
+Factory.define(:author_address, :class => 'AuthorAddress') do |aa|
   aa.add_attribute :id, Factory.next(:id)
 end
 
